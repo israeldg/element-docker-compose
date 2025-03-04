@@ -86,19 +86,19 @@ services:
       init:
         condition: service_completed_successfully
 
-  certbot:
-    image: certbot/certbot:latest
-    restart: unless-stopped
-    volumes:
-      - ${VOLUME_PATH}/data/certbot/conf:/etc/letsencrypt
-      - ${VOLUME_PATH}/data/certbot/www:/var/www/certbot
-      - ${VOLUME_PATH}/data/ssl:/data/ssl
-    entrypoint: "/bin/sh -c 'trap exit TERM; \
-                 while [ -e /etc/letsencrypt/live ]; \
-                 do sleep 30; certbot --webroot -w /var/www/certbot renew; \
-                 cp /etc/letsencrypt/live/$DOMAIN/*.pem /data/ssl; \
-                 sleep 12h & wait $${!}; \
-                 done;'"
+  # certbot:
+  #   image: certbot/certbot:latest
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ${VOLUME_PATH}/data/certbot/conf:/etc/letsencrypt
+  #     - ${VOLUME_PATH}/data/certbot/www:/var/www/certbot
+  #     - ${VOLUME_PATH}/data/ssl:/data/ssl
+  #   entrypoint: "/bin/sh -c 'trap exit TERM; \
+  #                while [ -e /etc/letsencrypt/live ]; \
+  #                do sleep 30; certbot --webroot -w /var/www/certbot renew; \
+  #                cp /etc/letsencrypt/live/$DOMAIN/*.pem /data/ssl; \
+  #                sleep 12h & wait $${!}; \
+  #                done;'"
 
   postgres:
     image: postgres:latest
@@ -226,14 +226,14 @@ services:
         condition: service_completed_successfully
 
   # as a basic local MTA
-  mailhog:
-    image: mailhog/mailhog:latest
-    restart: unless-stopped
-    # ports:
-      # - 8025:8025
-      # - 1025:1025
-    networks:
-      - backend
+  # mailhog:
+  #   image: mailhog/mailhog:latest
+  #   restart: unless-stopped
+  #   # ports:
+  #     # - 8025:8025
+  #     # - 1025:1025
+  #   networks:
+  #     - backend
 
   element-web:
     image: vectorim/element-web:latest

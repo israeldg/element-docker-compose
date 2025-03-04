@@ -39,13 +39,17 @@ database:
   connect_timeout: 30
   idle_timeout: 600
   max_lifetime: 1800
+# email:
+#   from: '${MAS_EMAIL_FROM}'
+#   reply_to: '${MAS_EMAIL_REPLY_TO}'
+#   transport: smtp
+#   mode: plain
+#   hostname: ${SMTP_HOST}
+#   port: ${SMTP_PORT}
 email:
-  from: '${MAS_EMAIL_FROM}'
-  reply_to: '${MAS_EMAIL_REPLY_TO}'
-  transport: smtp
-  mode: plain
-  hostname: ${SMTP_HOST}
-  port: ${SMTP_PORT}
+  from: '"Authentication Service" <root@localhost>'
+  reply_to: '"Authentication Service" <root@localhost>'
+  transport: blackhole
 ${SECRETS_MAS_SECRETS}
 passwords:
   enabled: true
