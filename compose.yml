@@ -327,7 +327,7 @@ services:
 
   keycloak:
     image: quay.io/keycloak/keycloak:23.0.6
-    command: ["kc.sh", "-c", "export KEYCLOAK_ADMIN_PASSWORD=$(cat /run/secrets/keycloak_password) && export KC_DB_PASSWORD=$(cat /run/secrets/postgres_password) && /opt/keycloak/bin/kc.sh start"]
+    command: ["start"]
     environment:
       KC_HOSTNAME: localhost
       KC_HOSTNAME_PORT: 8080
@@ -336,9 +336,11 @@ services:
       KC_HOSTNAME_STRICT_HTTPS: false
       KC_HEALTH_ENABLED: true
       KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD_FILE: /run/secrets/keycloak_password  
       KC_DB: postgres
       KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
       KC_DB_USERNAME: matrix
+      KC_DB_PASSWORD_FILE: /run/secrets/postgres_password  # Reference to the Postgres password secret      
     secrets:
       - postgres_password
       - keycloak_password
