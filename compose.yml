@@ -12,6 +12,8 @@ secrets:
     file: secrets/livekit/livekit_api_key
   livekit_secret_key:
     file: secrets/livekit/livekit_secret_key
+  keycloak_password:
+    file: secrets/keycloak/keycloak_password
 
 services:
   # XXX: consider factor out secret generation from the compose.yml
@@ -109,7 +111,7 @@ services:
     networks:
       - backend
     environment:
-      POSTGRES_MULTIPLE_DATABASES: synapse,mas
+      POSTGRES_MULTIPLE_DATABASES: synapse,mas,keycloak
       POSTGRES_USER: matrix # FIXME: use different username+passwords for synapse & MAS DBs.
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
       POSTGRES_INITDB_ARGS: --encoding=UTF8 --locale=C
@@ -321,3 +323,39 @@ services:
         condition: service_completed_successfully
       livekit:
         condition: service_started
+
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:23.0.6
+    command: start
+    environment:
+      KC_HOSTNAME: localhost
+      KC_HOSTNAME_PORT: 8080
+      KC_HOSTNAME_STRICT_BACKCHANNEL: false
+      KC_HTTP_ENABLED: true
+      KC_HOSTNAME_STRICT_HTTPS: false
+      KC_HEALTH_ENABLED: true
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD_FILE: /run/secrets/keycloak_password
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres/keycloak
+      KC_DB_USERNAME: matrix
+      KC_DB_PASSWORD_FILE: /run/secrets/postgres_password
+    secrets:
+      - postgres_password
+      - keycloak_password
+    # ports:
+    #   - 8080:8080
+    restart: always
+    depends_on:
+      redis:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+      init:
+        condition: service_completed_successfully
+    networks:
+      - backend
+
+
+

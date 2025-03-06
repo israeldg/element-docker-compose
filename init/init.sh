@@ -42,6 +42,13 @@ then
 	head -c16 /dev/urandom | base64 | tr -d '=' > /secrets/postgres/postgres_password
 fi
 
+if [[ ! -s /secrets/keycloak/keycloak_password ]]
+then
+	mkdir -p /secrets/keycloak
+	head -c16 /dev/urandom | base64 | tr -d '=' > /secrets/keycloak/keycloak_password
+fi
+
+
 mkdir -p /secrets/livekit
 if [[ ! -s /secrets/livekit/livekit_api_key ]]
 then
