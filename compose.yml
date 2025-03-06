@@ -338,7 +338,6 @@ services:
       KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
       KC_DB_USERNAME: matrix
       KC_HOSTNAME: ${KEYCLOAK_FQDN}
-      KC_PROXY: edge
       KC_HTTP_ENABLED: true
       
     secrets:
