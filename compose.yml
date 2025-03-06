@@ -327,7 +327,7 @@ services:
 
   keycloak:
     image: quay.io/keycloak/keycloak:23.0.6
-    command: ["start", "echo cat /run/secrets/keycloak_password"]
+    command: ["start", "export KEYCLOAK_ADMIN_PASSWORD=$(cat /run/secrets/keycloak_password)"]
     environment:
       KC_HOSTNAME: localhost
       KC_HOSTNAME_PORT: 8080
