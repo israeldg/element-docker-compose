@@ -325,8 +325,7 @@ services:
         condition: service_started
 
   keycloak:
-    image: quay.io/keycloak/keycloak:latest
-    command: ["start"]
+    image: quay.io/keycloak/keycloak:latest    
     restart: always
     volumes:      
       - ${VOLUME_PATH}/scripts/keycloak-entrypoint.sh:/entrypoint.sh
