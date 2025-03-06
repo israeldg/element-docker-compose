@@ -338,11 +338,9 @@ services:
       KC_HOSTNAME_STRICT_HTTPS: false
       KC_HEALTH_ENABLED: true
       KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: /run/secrets/keycloak_password
       KC_DB: postgres
       KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
       KC_DB_USERNAME: matrix
-      KC_DB_PASSWORD_FILE: run/secrets/postgres_password      
     secrets:
       - postgres_password
       - keycloak_password           
