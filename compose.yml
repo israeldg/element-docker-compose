@@ -342,7 +342,8 @@ services:
     secrets:
       - postgres_password
       - keycloak_password           
-    
+    networks:
+      - backend   
     depends_on:
       redis:
         condition: service_started
@@ -350,8 +351,7 @@ services:
         condition: service_healthy
       init:
         condition: service_completed_successfully
-    networks:
-      - backend
+
 
 
 
