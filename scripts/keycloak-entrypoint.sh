@@ -8,4 +8,4 @@ export KC_DB_PASSWORD=$(</run/secrets/postgres_password)
 
 
 # Start Keycloak
-exec /opt/keycloak/bin/kc.sh start
+exec /opt/keycloak/bin/kc.sh start-dev
