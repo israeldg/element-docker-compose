@@ -68,8 +68,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "8448:8448"
-      - "8443:8443"
+      - "8448:8448"      
     # shutdown fast so we can iterate rapidly on compose.yml
     stop_grace_period: 0s
     volumes:
@@ -339,7 +338,7 @@ services:
       KC_DB_USERNAME: matrix
       KC_HOSTNAME: ${KEYCLOAK_FQDN}
       KC_HTTP_ENABLED: true
-      
+      KC_PROXY: edge    
     secrets:
       - postgres_password
       - keycloak_password           
