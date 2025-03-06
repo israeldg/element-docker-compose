@@ -7,12 +7,13 @@ set -e
 # to stop docker autocreating them with random owners.
 # originally these were checked into the git repo, but that's pretty ugly, so doing it here instead.
 mkdir -p data/{element-{web,call},livekit,mas,nginx/{ssl,www,conf.d},postgres,synapse}
-mkdir -p secrets/{livekit,postgres,synapse}
+mkdir -p secrets/{livekit,postgres,synapse,keycloak}
 
 # create blank secrets to avoid docker creating empty directories in the host
 touch secrets/livekit/livekit_{api,secret}_key \
       secrets/postgres/postgres_password \
-      secrets/synapse/signing.key
+      secrets/synapse/signing.key \
+      secrets/keycloak/keycloak_password
 
 # grab an env if we don't have one already
 if [[ ! -e .env  ]]; then
