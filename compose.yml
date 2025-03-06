@@ -111,7 +111,7 @@ services:
     networks:
       - backend
     environment:
-      POSTGRES_MULTIPLE_DATABASES: synapse,mas,keycloak
+      POSTGRES_MULTIPLE_DATABASES: synapse,mas,keycloak,keycloak_test
       POSTGRES_USER: matrix # FIXME: use different username+passwords for synapse & MAS DBs.
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
       POSTGRES_INITDB_ARGS: --encoding=UTF8 --locale=C
