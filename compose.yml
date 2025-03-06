@@ -332,16 +332,26 @@ services:
     entrypoint: /entrypoint.sh
     env_file: .env
     environment:      
-      KC_HEALTH_ENABLED: true
+      #KC_HEALTH_ENABLED: true
       KEYCLOAK_ADMIN: admin
+        #KC_BOOTSTRAP_ADMIN_USERNAME: admin 
+      KC_PROXY_HEADERS: xforwarded #Use this environment variable starting version 24
+      KC_PROXY: edge #Only use this for versions older than 24
+      KC_HTTP_ENABLED: true
+      KC_HOSTNAME_STRICT: false
+      # Database
       KC_DB: postgres
       KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
       KC_DB_USERNAME: matrix
-      KC_HOSTNAME: ${KEYCLOAK_FQDN}      
-      KC_HOSTNAME_STRICT: false
-      KC_PROXY: edge
-      KC_HTTP_ENABLED: true
-
+      # Host
+      KC_HOSTNAME: ${KEYCLOAK_FQDN}     
+      #KC_HOSTNAME_STRICT: false
+      
+      # Logs
+      KC_LOG_LEVEL: INFO
+      KC_HOSTNAME_DEBUG: true
+    ports:
+      - 8080:8080
     secrets:
       - postgres_password
       - keycloak_password           
