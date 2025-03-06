@@ -340,7 +340,8 @@ services:
     secrets:
       - postgres_password
       - keycloak_password
-    command: /bin/sh -c "export KEYCLOAK_ADMIN_PASSWORD=$(cat /run/secrets/keycloak_password) && export KC_DB_PASSWORD=$(cat /run/secrets/postgres_password) && /opt/keycloak/bin/kc.sh start"
+    entrypoint: ["/bin/sh", "-c"]
+    command: "export KEYCLOAK_ADMIN_PASSWORD=$(cat /run/secrets/keycloak_password) && export KC_DB_PASSWORD=$(cat /run/secrets/postgres_password) && /opt/keycloak/bin/kc.sh start"
     restart: always
     depends_on:
       redis:
