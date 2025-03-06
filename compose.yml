@@ -330,6 +330,7 @@ services:
     volumes:      
       - ${VOLUME_PATH}/scripts/keycloak-entrypoint.sh:/entrypoint.sh
     entrypoint: /entrypoint.sh
+    env_file: .env
     environment:      
       KC_HEALTH_ENABLED: true
       KEYCLOAK_ADMIN: admin
@@ -337,7 +338,10 @@ services:
       KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
       KC_DB_USERNAME: matrix
       KC_HOSTNAME: ${KEYCLOAK_FQDN}      
-      KC_PROXY: edge    
+      KC_HOSTNAME_STRICT: false
+      KC_PROXY: edge
+      KC_HTTP_ENABLED: true
+
     secrets:
       - postgres_password
       - keycloak_password           
