@@ -332,7 +332,6 @@ services:
     entrypoint: /entrypoint.sh
     environment:
       KC_HOSTNAME: ${KEYCLOAK_FQDN}      
-      KC_HOSTNAME_STRICT_BACKCHANNEL: false
       KC_HEALTH_ENABLED: true
       KEYCLOAK_ADMIN: admin
       KC_DB: postgres
