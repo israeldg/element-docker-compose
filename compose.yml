@@ -327,7 +327,7 @@ services:
 
   keycloak:
     image: quay.io/keycloak/keycloak:23.0.6
-    command: ["sh", "-c", "export KEYCLOAK_ADMIN_PASSWORD=$(cat /run/secrets/keycloak_password) && export KC_DB_PASSWORD=$(cat /run/secrets/postgres_password) && /opt/keycloak/bin/kc.sh start"]
+    command: ["kc.sh", "-c", "export KEYCLOAK_ADMIN_PASSWORD=$(cat /run/secrets/keycloak_password) && export KC_DB_PASSWORD=$(cat /run/secrets/postgres_password) && /opt/keycloak/bin/kc.sh start"]
     environment:
       KC_HOSTNAME: localhost
       KC_HOSTNAME_PORT: 8080
