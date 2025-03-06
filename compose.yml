@@ -69,6 +69,7 @@ services:
       - "80:80"
       - "443:443"
       - "8448:8448"
+      - "8443:8443"
     # shutdown fast so we can iterate rapidly on compose.yml
     stop_grace_period: 0s
     volumes:
@@ -330,15 +331,14 @@ services:
     volumes:      
       - ${VOLUME_PATH}/scripts/keycloak-entrypoint.sh:/entrypoint.sh
     entrypoint: /entrypoint.sh
-    environment:
-      KC_HOSTNAME: ${KEYCLOAK_FQDN}      
+    environment:      
       KC_HEALTH_ENABLED: true
       KEYCLOAK_ADMIN: admin
       KC_DB: postgres
       KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
       KC_DB_USERNAME: matrix
-    ports:
-      - "8080:8080"
+      KC_HOSTNAME: ${KEYCLOAK_FQDN}
+      KC_PROXY: edge
     secrets:
       - postgres_password
       - keycloak_password           
