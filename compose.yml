@@ -326,6 +326,11 @@ services:
 
   keycloak:
     image: quay.io/keycloak/keycloak:latest
+    command: ["start"]
+    restart: always
+    volumes:      
+      - ${VOLUME_PATH}/scripts/keycloak-entrypoint.sh:/entrypoint.sh
+    entrypoint: /entrypoint.sh
     environment:
       KC_HOSTNAME: localhost
       KC_HOSTNAME_PORT: 8080
@@ -334,17 +339,15 @@ services:
       KC_HOSTNAME_STRICT_HTTPS: false
       KC_HEALTH_ENABLED: true
       KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD_FILE: /run/secrets/keycloak_password
+      KEYCLOAK_ADMIN_PASSWORD: /run/secrets/keycloak_password
       KC_DB: postgres
       KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
       KC_DB_USERNAME: matrix
-      KC_DB_PASSWORD_FILE: run/secrets/postgres_password
-      
+      KC_DB_PASSWORD_FILE: run/secrets/postgres_password      
     secrets:
       - postgres_password
-      - keycloak_password    
-    command: ["start"]
-    restart: always
+      - keycloak_password           
+    
     depends_on:
       redis:
         condition: service_started
