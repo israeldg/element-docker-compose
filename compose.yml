@@ -339,6 +339,8 @@ services:
       KC_DB_USERNAME: matrix
       KC_HOSTNAME: ${KEYCLOAK_FQDN}
       KC_PROXY: edge
+      KC_HTTP_ENABLED: true
+      
     secrets:
       - postgres_password
       - keycloak_password           
