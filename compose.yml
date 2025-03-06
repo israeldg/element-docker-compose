@@ -332,7 +332,7 @@ services:
     entrypoint: /entrypoint.sh
     environment:
       KC_HOSTNAME: ${KEYCLOAK_FQDN}
-      KC_HOSTNAME_PORT: 80
+      KC_HOSTNAME_PORT: 443
       KC_HOSTNAME_STRICT_BACKCHANNEL: false
       KC_HTTP_ENABLED: true
       KC_HOSTNAME_STRICT_HTTPS: false
