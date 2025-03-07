@@ -103,7 +103,7 @@ branding:
 upstream_oauth2:
   providers:
     - id: ${SECRETS_KEYCLOAK_PROVIDER_ID}
-      issuer: "https://${KEYCLOAK_FQDN}/realms/${KC_REALM}"
+      issuer: https://${KEYCLOAK_FQDN}/realms/${KC_REALM}
       human_name: Keycloak # TO BE FILLED
       token_endpoint_auth_method: client_secret_basic
       client_id: "matrix-authentication-service"
