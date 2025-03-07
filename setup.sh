@@ -13,7 +13,9 @@ mkdir -p secrets/{livekit,postgres,synapse,keycloak}
 touch secrets/livekit/livekit_{api,secret}_key \
       secrets/postgres/postgres_password \
       secrets/synapse/signing.key \
-      secrets/keycloak/keycloak_password
+      secrets/keycloak/keycloak_password \
+      secrets/keycloak/keycloak_client_secret \
+      secrets/keycloak/keycloak_provider_id
 
 # grab an env if we don't have one already
 if [[ ! -e .env  ]]; then

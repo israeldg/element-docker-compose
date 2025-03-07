@@ -92,7 +92,8 @@ export DOLLAR='$' # evil hack to escape dollars in config files
 	export SECRETS_MAS_MATRIX_SECRET=$(</secrets/mas/matrix.secret)
 	export SECRETS_MAS_CLIENT_SECRET=$(</secrets/mas/client.secret)
 	export SECRETS_POSTGRES_PASSWORD=$(</secrets/postgres/postgres_password)
-	export SECRETS_KEYCLOAK_CLIENT_SECRET=$(</secrets/mas/keycloak_client_secret)
+	export SECRETS_KEYCLOAK_CLIENT_SECRET=$(</secrets/keycloak/keycloak_client_secret)
+	export SECRETS_KEYCLOAK_PROVIDER_ID=$(</secrets/keycloak/keycloak_provider_id)
 	template "/data-template/mas"
 )
 

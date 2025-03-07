@@ -102,11 +102,11 @@ branding:
 
 upstream_oauth2:
   providers:
-    - id: "01H8PKNWKKRPCBW4YGH1RWV279"
+    - id: ${SECRETS_KEYCLOAK_PROVIDER_ID}
       issuer: "https://${KEYCLOAK_FQDN}/realms/${KC_REALM}" # TO BE FILLED
       token_endpoint_auth_method: client_secret_basic
       client_id: "matrix-authentication-service"
-      client_secret: "${SECRETS_KEYCLOAK_CLIENT_SECRET}" # TO BE FILLED
+      client_secret: ${SECRETS_KEYCLOAK_CLIENT_SECRET} # TO BE FILLED
       scope: "openid profile email"
       claims_imports:
         localpart:
