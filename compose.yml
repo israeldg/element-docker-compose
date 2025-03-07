@@ -345,7 +345,7 @@ services:
       KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
       KC_DB_USERNAME: matrix
       # Host
-      KC_HOSTNAME: ${KEYCLOAK_FQDN}     
+      # KC_HOSTNAME: ${KEYCLOAK_FQDN}     
       #KC_HOSTNAME_STRICT: false
       
       # Logs
