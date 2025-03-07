@@ -329,6 +329,7 @@ services:
     restart: always
     volumes:      
       - ${VOLUME_PATH}/scripts/keycloak-entrypoint.sh:/entrypoint.sh
+      - ${VOLUME_PATH}/data/ssl/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt
     entrypoint: /entrypoint.sh
     env_file: .env
     environment:      
